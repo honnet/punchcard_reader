@@ -101,6 +101,31 @@ void setup()
   pinMode(LED_D2,  OUTPUT);
   pinMode(LED_D1,  OUTPUT);
   pinMode(LED_D0,  OUTPUT);
+
+  // Use internal pullup resistors.
+  // Works at least on teensy LC, try changing 1 to 0 if it doesn't:
+#if 1
+  pinMode(REG, INPUT_PULLUP);
+  pinMode(D7,  INPUT_PULLUP);
+  pinMode(D6,  INPUT_PULLUP);
+  pinMode(D5,  INPUT_PULLUP);
+  pinMode(D4,  INPUT_PULLUP);
+  pinMode(D3,  INPUT_PULLUP);
+  pinMode(D2,  INPUT_PULLUP);
+  pinMode(D1,  INPUT_PULLUP);
+  pinMode(D0,  INPUT_PULLUP);
+#else
+  digitalWrite(REG, HIGH);
+  digitalWrite(D7,  HIGH);
+  digitalWrite(D6,  HIGH);
+  digitalWrite(D5,  HIGH);
+  digitalWrite(D4,  HIGH);
+  digitalWrite(D3,  HIGH);
+  digitalWrite(D2,  HIGH);
+  digitalWrite(D1,  HIGH);
+  digitalWrite(D0,  HIGH);
+#endif
+
   sendCardReport(REPORT_OK_BOOT, NULL, 0);
 }
 
